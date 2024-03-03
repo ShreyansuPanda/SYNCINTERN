@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>URL Shortener</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+        }
+        form {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input[type="url"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #444;
+        }
+        .shortened-url {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .shortened-url input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .success-message {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            margin-top: 20px;
+            text-align: center;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>URL Shortener</h1>
+    <form method="POST" action="{{ url_for('index') }}" id="url-shortener-form">
+        <input type="url" name="long_url" placeholder="Enter long URL" required>
+        <button type="submit">Shorten</button>
+    </form>
+    <div class="shortened-url" id="shortened-url">
+        <input type="text" id="shortened-url-text" readonly>
+    </div>
+    <div class="success-message" id="success-message" style="display: none;">
+        URL Shortened Successfully!
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('url-shortener-form');
+            const shortenedUrlDiv = document.getElementById('shortened-url');
+            const shortenedUrlInput = document.getElementById('shortened-url-text');
+            const successMessage = document.getElementById('success-message');
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                const formData = new FormData(form);
+                fetch(form.action, {
+                    method: form.method,
+                    body: formData,
+                })
+                .then(response => response.text())
+                .then(data => {
+                    shortenedUrlInput.value = data;
+                    shortenedUrlDiv.style.display = 'block';
+                    successMessage.style.display = 'block';
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        });
+    </script>
+</body>
+</html>
