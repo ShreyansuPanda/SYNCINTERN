@@ -1,3 +1,6 @@
+#SYNC Intern's Task 1: Alarm Clock
+#This is a simple alarm clock program with gui
+
 from tkinter import Tk
 from tkinter.ttk import *
 from tkinter import *
