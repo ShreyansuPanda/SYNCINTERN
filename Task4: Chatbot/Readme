@@ -1,1 +1,3 @@
-This is a simple chatbot made using gemini api, flask. Its a simple chatbot.
+This is a simple chatbot made using Gemini API, flask. It's a simple chatbot.
+Copy all the files into the same folder
+Run the Flask.py file
