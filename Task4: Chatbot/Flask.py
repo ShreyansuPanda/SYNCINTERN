@@ -1,4 +1,4 @@
-#CodeAlpha Task 3: AI ChatBot Using Google Gemini
+#SYNC INTERN'S Task 4: AI ChatBot Using Google Gemini
 #This  is a simple AI chatbot using Google Gemini API. It can understand and respond to user's queries about the weather, time, or any other topic
 from flask import  Flask,render_template,jsonify,request
 from agent import run_conversation
